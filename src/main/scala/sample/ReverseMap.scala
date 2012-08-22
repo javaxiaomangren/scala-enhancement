@@ -2,12 +2,24 @@ package sample
 
 import scala.collection.JavaConversions._
 
-class ReverseMap extends App {
+object ReverseMap extends App {
   
-  val in = Map('a -> List("110000", "120000", "401300"), 'b -> List("110000", "120000", "201300"))
-  val out = Map("110000" -> List('a, 'b), "120000" -> List('a, 'b), "401300" -> List('a), "201300" -> List('b))
+  val in = Map('a -> List("110000", "120000", "401300"), 'b -> List("110000", "120000", "201300"), 'c -> List("110000", "120000", "501300"))
+  val out = Map("110000" -> List('a, 'b, 'c), "120000" -> List('a, 'b, 'c), "401300" -> List('a), "201300" -> List('b) , "501300" -> List('c))
   val temp = new java.util.ArrayList[(String, List[Symbol])]
- 
+  
+
+  def g[K, V](map: (K, Seq[V])*) = {
+    map.foldLeft(scala.collection.mutable.Map[V, List[K]]()) {
+      case (resultMap, (k, v)) =>
+        v foreach { v1 => 
+          val e = resultMap.getOrElseUpdate(v1, List.empty)
+          resultMap.put(v1, k :: e)
+        }
+        resultMap
+    }
+  }
+  
   def f(map: (Symbol, Seq[String])*) = {
     val ls = map.flatMap(kv => kv._2.map((_, List(kv._1)))).sortBy(_._1).toList
     val aggregated = dif(ls) 
@@ -32,8 +44,8 @@ class ReverseMap extends App {
     b
   }
   
-  val result = f(in.toList:_*)
+//  val result = f(in.toList:_*)
+  val result = g(in.toList:_*)
   println(result)
-  println(result == out)
   
 }
