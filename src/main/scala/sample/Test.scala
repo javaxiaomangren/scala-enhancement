@@ -39,11 +39,18 @@ object Test extends App{
 //  }
 //  timer.schedule(timerTask,delay ,24*60*60*1000)
   
-  (200L,None) match{
-    case (i:Long, v) => println(i,v)
-    case _ => 
+//  (200L,None) match{
+//    case (i:Long, v) => println(i,v)
+//    case _ => 
+//  }
+//  
+//  println(Option.apply(None).get)
+  
+//  val list = List("12:00","13:00","14:00","15:00","15:00","17:00")
+//  val str = list.mkString(",")
+//  println(str)
+  val list = List(1)
+  (0 to list.size -1) foreach{ e =>
+    println(e)
   }
-  
-  println(Option.apply(None).get)
-  
 }

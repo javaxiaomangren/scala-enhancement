@@ -6,7 +6,13 @@ import java.util.Date
 
 object DateAndRegex extends App{
   
-    testURLRegAndDate
+//    testURLRegAndDate
+  println(getURLDate)
+  val dateFormat = new SimpleDateFormat("yyyyMMdd")
+  println(dateFormat.format(new Date))
+  val s = "http://movie.mtime.com/56928/"
+  val dateRegex = """\d+""".r
+  println(dateRegex.findFirstIn(s))
   
   def testRegDate(){
     val  str ="http://www.cgvxingx-olympic.com/schedule.aspx?date=2012年06月15日"
@@ -65,6 +71,12 @@ object DateAndRegex extends App{
     format1.parse("2012_06_17")
     val dd  = format2.format(format1.parse("2012_06_17"))
     println(dd)
+  }
+  
+  def getURLDate() = {
+    val url = "<a href=\"http://theater.mtime.com/China_Jilin_Province_Changchun_Kuancheng/1232/?d=20120829\">8月29日  今天</a>"
+    val dateRE = """(?<=[\?]d=)\d{8}""".r
+    dateRE.findFirstIn(url).get
   }
   
 }
