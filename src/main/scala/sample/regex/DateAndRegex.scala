@@ -14,6 +14,10 @@ object DateAndRegex extends App{
   val dateRegex = """\d+""".r
   println(dateRegex.findFirstIn(s))
   
+  
+  val dateFormat2 = new SimpleDateFormat("yyyy-MM-dd")
+  val d =  dateFormat.parse("20120903")
+  println(dateFormat2.format(d))
   def testRegDate(){
     val  str ="http://www.cgvxingx-olympic.com/schedule.aspx?date=2012年06月15日"
     val dateRegex = """(?<=[\?&]date=)\d{4}[\u4e00-\u9fa5]\d{1,2}[\u4e00-\u9fa5]\d{1,2}[\u4e00-\u9fa5]""".r
