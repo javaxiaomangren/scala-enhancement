@@ -173,6 +173,10 @@ object ScalaProblems extends App{
       if (r.isEmpty || r.head != h) h :: r
       else r
     }
+  
+  def dropFun [T](n: Int, ls: List[T] ): List[T] = {
+    ls.zipWithIndex filterNot {e => ((e._2 + 1) % n) == 0} map(_._1) 
+  }
 
   /* Determine the greatest common divisor of two positive integer numbers. */
   def gcd(x: Int, y: Int): Int = if(y == 0) x else gcd(y, x % y)
@@ -186,4 +190,15 @@ object ScalaProblems extends App{
     }
     b
   }
+
+//class S99Int(val start: Int) {
+//  def isPrime: Boolean =
+//    (start > 1) && (S99Int.primes takeWhile { _ <= Math.sqrt(start) } forall { start % _ != 0 })
+//}
+//
+//object S99Int {
+//  val primes = Stream.cons(2, Stream.from(3, 2) )
+//}
+
 }
+

@@ -34,5 +34,6 @@ object FileDemo  {
       }
     } else
       Console.err.print("Please Enter File Name ")
+//    Console.se
   }
 }
