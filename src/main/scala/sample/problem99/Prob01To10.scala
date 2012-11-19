@@ -1,6 +1,6 @@
 package sample.problem99
 
-object ScalaProblems extends App{
+object Prob01To10 extends App{
   val lastIndex = last(List(12,232,4343,4))
   val penultimateIndex = penultimate(List())
 //  println(lastIndex)
@@ -190,15 +190,31 @@ object ScalaProblems extends App{
     }
     b
   }
-
-//class S99Int(val start: Int) {
-//  def isPrime: Boolean =
-//    (start > 1) && (S99Int.primes takeWhile { _ <= Math.sqrt(start) } forall { start % _ != 0 })
-//}
-//
-//object S99Int {
-//  val primes = Stream.cons(2, Stream.from(3, 2) )
-//}
+  /*
+   P09 Pack consecutive duplicates of list elements into sublists
+   pack(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
+   List[List[Symbol]] = List(List('a, 'a, 'a, 'a), List('b), List('c, 'c), List('a, 'a), List('d), List('e, 'e, 'e, 'e))
+   */
+  def packList[A](list: List[A]):List[List[A]] = {
+    if(list.isEmpty) List(List())
+    else{
+      val (packed, next) = list.span(_ == list.head)
+      if(next == Nil) List(packed)
+      else packed :: packList(next)
+    }
+  }
+//  println(packList(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)))
+  
+  /*
+   * P10  Run-length encoding of a list.
+   * scala> encode(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
+   * res0: List[(Int, Symbol)] = List((4,'a), (1,'b), (2,'c), (2,'a), (1,'d), (4,'e))
+   */
+  
+  def encodingPacked[A](list: List[A]): List[(Int, A)] = {
+    packList(list).map{e => (e.length, e.head)}
+  }
+//  println(encodingPacked(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)))
 
 }
 

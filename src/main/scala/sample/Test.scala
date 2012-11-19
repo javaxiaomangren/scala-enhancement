@@ -49,8 +49,18 @@ object Test extends App{
 //  val list = List("12:00","13:00","14:00","15:00","15:00","17:00")
 //  val str = list.mkString(",")
 //  println(str)
-  val list = List(1)
-  (0 to list.size -1) foreach{ e =>
-    println(e)
+//  val list = List(1)
+//  (0 to list.size -1) foreach{ e =>
+//    println(e)
+//  }
+  
+  def getPassDay(number: Int, date: Date) = {
+    val cal = Calendar.getInstance
+    cal.setTime(date)
+    cal.add(Calendar.DAY_OF_YEAR , -number)
+    cal.getTime
   }
+  
+  println(getPassDay(30, new Date))
+  
 }
