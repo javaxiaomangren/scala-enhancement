@@ -20,6 +20,7 @@ object Prob01To10 extends App{
    P01 Find the last element of a list  
    */
   def last[A](list: List[A]): A = list.last
+
   // recursive
   def last2[A](list: List[A]): A = list match{
     case h :: Nil  => h 

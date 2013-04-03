@@ -28,5 +28,6 @@ public class ReadFromHadoop {
         OutputStream out = new FileOutputStream(myDir) ;
         IOUtils.copyBytes(hdfsInStream, out, 4096, true);
     }
+
     
 }
